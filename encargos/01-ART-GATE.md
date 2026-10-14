@@ -1,26 +1,28 @@
 # Encargos del ART-GATE
 
 Estado: ⬜ pendiente · 📥 recibido, Claude revisando · 🔧 hay que corregir (ver nota) · ✅ integrado
+**Antes de dibujar edificios, lee [02-MAPA.md](02-MAPA.md)**: solo fachadas SUR en alzado, tejados desde arriba y luz cenital.
 
 ## 🚩 Para empezar (mínimo)
-Con **E1, E2 y E3** ya se puede montar y recorrer la calle con arte de verdad. El resto se va sumando.
+Con **E1, E2, E3 y E9** ya se puede montar y recorrer la calle con arte de verdad.
 
 | Código | Encargo | Tamaño | Detalles | Estado |
 |---|---|---|---|---|
-| **E1** | **Empedrado** de Cimavilla (canto rodado gris-ocre) | Tile 16×16: 1 base + 3 variantes | Piedras de tamaños distintos, juntas oscuras y algo de musgo en alguna variante. Las 4 deben casar entre sí por todos los bordes | ⬜ |
-| **E2** | **Acera de losa de granito + bordillo** | Tiles 16×16 | Losa (2 variantes), bordillo que separa la acera (arriba) de la calzada (abajo) y canaleta o cuneta | ⬜ |
-| **E3** | **Fachada residencial con galería acristalada blanca** | ~112×176 px | Planta baja + 2 pisos + alero. Revoco pastel (ocre, salmón o verde mar), esquinas de sillería, teja árabe roja, galería de madera blanca con cristales, puerta de madera | ⬜ |
+| **E1** | **Empedrado** de Cimavilla (canto rodado gris-ocre) | Tile 16×16: 1 base + 3 variantes | Piedras de tamaños distintos, juntas oscuras y algo de musgo en una variante. Las 4 deben casar entre sí por todos los bordes | ⬜ |
+| **E2** | **Acera de losa de granito + bordillo + escalones** | Tiles 16×16 | Losa (2 variantes), bordillo entre acera y calzada, y 2 escalones para las callejas norte-sur | ⬜ |
+| **E3** | **Fachada SUR con galería acristalada blanca** | **112×176** (PB+2, incluido el alero) | Alzado puro, sin laterales ni perspectiva. Revoco pastel, sillería en las esquinas, galería de madera blanca con cristales, puerta de madera. Se usará también **volteada**, así que nada de rótulos ni luz lateral marcada | ⬜ |
+| **E9** | **Tileset de tejado de teja árabe** visto desde arriba | Tiles 16×16 | Campo (3 variantes), cumbrera, alero norte con canalón (el que tapa la acera), unión con la cornisa de la fachada, canto de calleja (oeste; el este sale volteado) y 4 esquinas | ⬜ |
 
 ## Siguiente tanda
 | Código | Encargo | Tamaño | Detalles | Estado |
 |---|---|---|---|---|
-| **E4** | **Fachada del chigre** | ~112×176 px | Planta baja con puerta legible y escaparate con luz cálida. **Rótulo en capa aparte** (nombre a elegir) y pizarra "Hai sidra" | ⬜ |
+| **E4** | **Fachada SUR del chigre** | 112×176 | Planta baja con puerta legible y escaparate con luz cálida. **Rótulo en capa aparte** (nombre a elegir) y pizarra "Hai sidra" | ⬜ |
 | **E5** | **Props del chigre** | 16–32 px cada uno | Cajas de sidra con botellas verdes, pipa o barrica, banco o taburete, **farol de pared `_off` y `_on`** | ⬜ |
+| **E8** | **Casa B** (PB+1) y **casa estrecha** (PB+2) | 96×128 y 64×176 | Otro color de revoco y balcón de forja; también se voltean | ⬜ |
 | **E6** | Detalles de suelo | 16×16 | Tapa de alcantarilla y charco | ⬜ |
 | **E7** | Props marineros | 16–32 px | Nasas, boyas, redes, maceta con hortensias, bolardo | ⬜ |
-| **E8** | Segunda fachada | ~96×160 px | Otro color de revoco o balcón de forja, para probar a recombinar | ⬜ |
-| **E9** | **Tejado visto desde la calle** (lado sur, primer plano) | ~160×64 px | Teja árabe vista desde arriba. Tapa al jugador cuando pasa por debajo | ⬜ |
 | **E10** | Personaje de escala | Frames de 24×32 | Idle + caminar en 4 direcciones (abajo, izquierda, derecha, arriba) | ⬜ |
+| **E11** | Props de tejado | 16–32 px | Chimenea, antena de TV, claraboya, gato | ⬜ |
 
 ## Notas de revisión de Claude
 _(aquí apunto lo que haya que corregir de cada entrega)_
