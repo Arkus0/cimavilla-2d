@@ -17,10 +17,10 @@ const NPCS = {
 class Boot extends Phaser.Scene {
   constructor() { super('boot'); }
   preload() {
-    for (const k of ['plaza', 'interior', 'lamp', 'bench', 'barrel', 'crate', 'pot', 'glow', 'vignette', 'tree', 'table'])
+    for (const k of ['plaza_ground', 'plaza_fg', 'interior', 'lamp', 'bench', 'barrel', 'crate', 'hydrangea', 'glow', 'vignette', 'tree', 'table', 'vending', 'bike', 'butano', 'fishcrates', 'cat', 'shadow', 'tabaco'])
       this.load.image(k, A[k]);
     for (const k of ['player', 'guela', 'pescador', 'chigrero', 'neno'])
-      this.load.spritesheet(k, A[k], { frameWidth: 16, frameHeight: 24 });
+      this.load.spritesheet(k, A[k], { frameWidth: 24, frameHeight: 32 });
   }
   create() {
     const dirs = ['down', 'left', 'right', 'up'];
@@ -36,7 +36,8 @@ class Boot extends Phaser.Scene {
 class Base extends Phaser.Scene {
   makePlayer(x, y, dir) {
     this.player = this.physics.add.sprite(x, y, 'player', 0).setOrigin(0.5, 1);
-    this.player.body.setSize(10, 6).setOffset(3, 18);
+    this.player.body.setSize(12, 6).setOffset(6, 26);
+    this.pshadow = this.add.image(x, y, 'shadow').setOrigin(0.5, 0.6);
     this.player.dir = dir; this.player.play(`player-idle-${dir}`);
     this.keys = this.input.keyboard.addKeys('W,A,S,D,UP,DOWN,LEFT,RIGHT,E,SPACE');
     this.input.keyboard.on('keydown-E', () => this.interact());
@@ -48,7 +49,7 @@ class Base extends Phaser.Scene {
   prop(key, x, y, bw, bh) { const s = this.add.image(x, y, key).setOrigin(0.5, 1); s.setDepth(y); if (bw) this.wall(x - bw / 2, y - bh, bw, bh); return s; }
   npc(key, x, y, dir) {
     const n = this.physics.add.staticSprite(x, y, key, 0).setOrigin(0.5, 1); n.key = key; n.home = dir;
-    n.body.setSize(12, 6).setOffset(2, 18); n.refreshBody?.(); n.body.reset(x, y - 3);
+    n.body.setSize(14, 6).setOffset(5, 26); this.add.image(x, y, 'shadow').setOrigin(0.5, 0.6).setDepth(y - 1); n.refreshBody?.(); n.body.reset(x, y - 3);
     n.play(`${key}-idle-${dir}`); n.setDepth(y); this.npcs.push(n); this.solids.add(n);
     return n;
   }
@@ -84,7 +85,7 @@ class Base extends Phaser.Scene {
       p.dir = vx ? (vx < 0 ? 'left' : 'right') : (vy < 0 ? 'up' : 'down');
       p.anims.play(`player-walk-${p.dir}`, true);
     } else p.anims.play(`player-idle-${p.dir}`, true);
-    p.setDepth(p.y);
+    p.setDepth(p.y); this.pshadow.setPosition(p.x, p.y).setDepth(p.y - 1);
     this.tick?.();
   }
 }
@@ -93,26 +94,30 @@ class Plaza extends Base {
   constructor() { super('plaza'); }
   create(data) {
     this.physics.world.setBounds(0, 0, 480, 352);
-    this.add.image(0, 0, 'plaza').setOrigin(0).setDepth(-10);
+    this.add.image(0, 0, 'plaza_ground').setOrigin(0).setDepth(-10);
+    this.add.image(0, 0, 'plaza_fg').setOrigin(0).setDepth(8000);
     this.makePlayer(data.x, data.y, data.dir);
-    this.wall(0, 0, 480, 128); this.wall(0, 128, 44, 180); this.wall(436, 128, 44, 180); this.wall(0, 298, 480, 54);
-    this.prop('lamp', 120, 150, 6, 4); this.prop('lamp', 360, 150, 6, 4); this.prop('lamp', 240, 290, 6, 4);
-    this.prop('bench', 150, 222, 30, 8); this.prop('bench', 330, 296, 30, 8);
-    this.prop('barrel', 196, 140, 12, 6); this.prop('barrel', 210, 136, 12, 6); this.prop('barrel', 290, 140, 12, 6);
-    this.prop('crate', 274, 140, 14, 6);
-    this.prop('pot', 108, 134); this.prop('pot', 330, 134); this.prop('pot', 344, 134); this.prop('pot', 56, 134);
-    this.prop('tree', 240, 214, 6, 5).setDepth(214);
-    this.npc('guela', 170, 222, 'down').setDepth(223);
-    this.npc('pescador', 380, 288, 'left');
+    this.wall(0, 0, 480, 132); this.wall(0, 128, 44, 180); this.wall(436, 128, 44, 180); this.wall(0, 298, 480, 54);
+    this.wall(48, 128, 28, 8); this.wall(404, 128, 28, 8);
+    this.prop('lamp', 240, 286, 6, 4);
+    this.prop('bench', 150, 222, 30, 6); this.prop('bench', 330, 294, 30, 6);
+    this.prop('barrel', 200, 152, 14, 6); this.prop('barrel', 284, 152, 14, 6); this.prop('barrel', 160, 160, 14, 6);
+    this.prop('crate', 222, 140, 16, 5); this.prop('crate', 226, 134);
+    this.prop('vending', 318, 140, 18, 8); this.prop('bike', 360, 140, 26, 5); this.prop('butano', 426, 138, 10, 5);
+    this.prop('fishcrates', 404, 284, 22, 6); this.prop('hydrangea', 92, 140, 12, 5); this.prop('hydrangea', 390, 140, 12, 5);
+    this.prop('cat', 70, 299).setDepth(300);
+    this.prop('tree', 240, 214, 6, 5);
+    this.npc('guela', 170, 222, 'down');
+    this.npc('pescador', 384, 286, 'left');
     this.npc('neno', 96, 190, 'right');
     const cam = this.cameras.main; cam.setBounds(0, 0, 480, 352); cam.startFollow(this.player, true, 0.15, 0.15); cam.roundPixels = true;
     this.physics.add.collider(this.player, this.solids);
     this.player.setCollideWorldBounds(true);
-    const L = [[120, 132, 1.0, 0.55], [360, 132, 1.0, 0.55], [240, 272, 1.0, 0.55], ...META.glows.map(([x, y]) => [x, y + 6, 0.6, 0.35])];
+    const L = [[240, 262, 1.0, 0.45], ...META.lights.map(([x, y, k]) => [x, y + (k === 'lamp' ? 0 : 6), k === 'lamp' ? 0.7 : 0.5, k === 'win' ? 0.2 : 0.35])];
     this.lighting(L, 0xd8a890, 1);
     this.cameras.main.fadeIn(400, 26, 20, 24);
   }
-  tick() { const p = this.player; if (!this.leaving && p.y < 136 && p.x > 232 && p.x < 248 && p.dir === 'up' && this.keys.UP.isDown + this.keys.W.isDown) { this.leaving = 1; this.cameras.main.fadeOut(300, 26, 20, 24); this.time.delayedCall(320, () => this.scene.start('chigre')); } }
+  tick() { const p = this.player; if (!this.leaving && p.y < 140 && p.x > 230 && p.x < 250 && p.dir === 'up' && this.keys.UP.isDown + this.keys.W.isDown) { this.leaving = 1; this.cameras.main.fadeOut(300, 26, 20, 24); this.time.delayedCall(320, () => this.scene.start('chigre')); } }
 }
 
 class Chigre extends Base {
@@ -124,8 +129,8 @@ class Chigre extends Base {
     this.wall(0, 0, 256, 52); this.wall(104, 60, 136, 34);
     this.npc('chigrero', 170, 66, 'down').setDepth(60);
     for (const [x, y] of [[20, 70], [20, 92], [40, 70]]) this.prop('barrel', x, y, 12, 6);
-    this.prop('table', 50, 140, 22, 8); this.prop('table', 200, 150, 22, 8); this.prop('crate', 238, 120, 14, 6);
-    this.npc('pescador', 76, 142, 'left');
+    this.prop('table', 50, 140, 22, 8); this.prop('table', 200, 150, 22, 8); this.prop('crate', 238, 120, 14, 6); this.prop('tabaco', 244, 80, 14, 6);
+    this.npc('pescador', 78, 144, 'left');
     this.physics.add.collider(this.player, this.solids);
     this.player.setCollideWorldBounds(true);
     const cam = this.cameras.main; cam.centerOn(128, 88);
