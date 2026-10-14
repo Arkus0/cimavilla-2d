@@ -14,7 +14,7 @@ with sync_playwright() as p:
     for _ in range(3): pg.keyboard.press('e'); time.sleep(.1)
     pg.evaluate("(()=>{const p=game.scene.getScene('plaza').player;p.setPosition(240,160)})()"); time.sleep(.3); pg.screenshot(path=f'{out}/04_puerta_chigre.png'); hold('ArrowUp',1.2); time.sleep(1)
     pg.screenshot(path=f'{out}/05_chigre_interior.png')
-    hold('ArrowUp',1.0); hold('ArrowRight',0.5); hold('ArrowUp',0.3); pg.keyboard.press('Space'); time.sleep(.3)
+    pg.evaluate("game.scene.getScene('chigre').player.setPosition(168,100)"); hold('ArrowUp',0.3); pg.keyboard.press('Space'); time.sleep(.3)
     pg.screenshot(path=f'{out}/06_dialogo_chigrero.png')
     print('scene',pg.evaluate('game.scene.getScenes(true).map(s=>s.scene.key)'),'errors',errs)
     b.close()

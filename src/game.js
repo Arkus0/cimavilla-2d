@@ -53,8 +53,9 @@ class Base extends Phaser.Scene {
     return n;
   }
   interact() {
+    if (!this.sys.isActive()) return;
     if (dlg) return advance();
-    const p = this.player; let best = null, bd = 34;
+    const p = this.player; let best = null, bd = 42;
     for (const n of this.npcs) { const d = Phaser.Math.Distance.Between(p.x, p.y, n.x, n.y); if (d < bd) { bd = d; best = n; } }
     if (best) {
       const dx = p.x - best.x, dy = p.y - best.y;
