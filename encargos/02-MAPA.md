@@ -20,8 +20,8 @@ En 2D cada asset vale solo para una orientación. Por eso el mapa se fija **ante
 | Ancho de fachada | múltiplo de 16 px: 64 (estrecha), 96, 112… |
 | Tejado | **tileset** de teja árabe 16×16; el tejado de cada casa sale de ahí, no se pinta en la fachada |
 
-## (A) Esquema del barrio
-Estilizado, no es cartografía. Solo sirve para fijar orientaciones; los hitos están colocados por inspiración, no en su sitio exacto.
+## (A) Esquema del barrio (provisional, solo orientación)
+> ⚠️ **Superado por [03-BARRIO.md](03-BARRIO.md):** la ciudad será **ficticia**, más grande (2–3 min de punta a punta), con varios niveles y el puerto jugable. Este esquema con nombres reales solo ilustra las reglas de orientación. El trazado definitivo lo propondrá Claude después del ART-GATE.
 
 ![Esquema del barrio](img/barrio.png)
 

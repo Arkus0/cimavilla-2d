@@ -4,6 +4,7 @@ Este repo es el **buzón de entregas**. Claude deja aquí los encargos y la espe
 
 - Lista de encargos y estado: **[01-ART-GATE.md](01-ART-GATE.md)**
 - Mapa y orientación de los edificios: **[02-MAPA.md](02-MAPA.md)** (léelo antes de dibujar edificios)
+- El barrio: decisiones y **cuestionario para rellenar**: **[03-BARRIO.md](03-BARRIO.md)**
 - Lema de todo prompt de imagen: **«Shenmue asturiano con el nivel gráfico de Eastward»**
 
 ## Cómo entregar
@@ -27,4 +28,5 @@ Este repo es el **buzón de entregas**. Claude deja aquí los encargos y la espe
 | Fachadas | Alzado de la cara sur, de **176 px de alto (PB+2) o 128 (PB+1)** incluido el alero propio; ancho en múltiplos de 16 px. Si se puede, **por capas** del mismo tamaño: `_base` (pared, zócalo, sillería), `_huecos` (ventanas, galería, puerta), `_rotulo`. El tejado sale del tileset (E9), no se pinta en la fachada |
 | Suelo | Tiles de 16×16 que **se repiten sin costura** (en mosaico 3×3 no se ve la junta). Mejor en una hoja sin márgenes ni separación |
 | Props | Uno por PNG, recortado, fondo transparente, ancla en el centro de la base. Si dan luz, dos versiones: `_off` y `_on` |
+| Día/noche | Cada fachada lleva además una capa **`_luces`** del mismo tamaño: solo ventanas, escaparates y rótulos encendidos, y el resto transparente |
 | Procedencia | **Obligatoria**. Nada extraído, calcado ni retocado de Eastward, Alundra, SEGA ni otros juegos comerciales |
